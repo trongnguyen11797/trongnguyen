@@ -1,0 +1,27 @@
+<html>
+  <body>
+    <input type="password" id="sshPassword" placeholder="Enter SSH Password">
+    <button onclick="executeSSHCommand()">Execute SSH Command</button>
+
+    <script>
+      function executeSSHCommand() {
+        const password = document.getElementById('sshPassword').value;
+
+        fetch('/execute-ssh-command', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ password })
+        })
+        .then(response => response.text())
+        .then(result => {
+          console.log(result);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      }
+    </script>
+  </body>
+</html>
